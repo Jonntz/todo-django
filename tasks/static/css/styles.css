@@ -4,7 +4,6 @@
 }
 
 /* NavBar */
-
 .navbar{
     border-bottom: 1px solid #333;
     margin-bottom: 20px;
@@ -33,6 +32,10 @@
     padding: 8px;
     border-radius: 5px;
     margin-right: 25px;
+}
+
+#add-link{
+    text-decoration: none;
 }
 
 .fa.fa-plus{
