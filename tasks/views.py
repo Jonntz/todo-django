@@ -2,10 +2,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Task
 from .forms import TaskForm
+from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Create your views here.
 def task_list(request):
-    tasks = Task.objects.all().order_by('-created_at')
+    task_list = Task.objects.all().order_by('-created_at')
+    paginator = Paginator(task_list, 5)
+    page = request.GET.get('page')
+    tasks = paginator.get_page(page)
+
     return render(request, 'tasks/list.html', {'tasks': tasks})
 
 def task_view(request, id):
@@ -42,3 +48,11 @@ def task_edit(request, id):
 
     else:
         return render(request, 'tasks/edit-task.html', { 'form': form, 'task': task })
+
+def task_delete(request, id):
+    task = get_object_or_404(Task, pk=id)
+    task.delete()
+
+    messages.info(request, 'Tarefa deletada com sucesso')
+
+    return redirect('/')
