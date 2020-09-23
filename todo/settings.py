@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'tasks',
     'about',
     'users',
-    'crispy_forms'
+    'crispy_forms',
+    'accounts'
 ]
 
 MIDDLEWARE = [

@@ -3,6 +3,10 @@
 
 }
 
+.container-fluid .row{
+    margin: 0;
+}
+
 /* NavBar */
 .navbar{
     border-bottom: 1px solid #333;

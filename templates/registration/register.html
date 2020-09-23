@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Login -To-Do List
+    Registrar -To-Do List
 {% endblock title %}
 
 {% block content %}
@@ -10,15 +10,15 @@
         <div class="col-md-4 offset-md-4">
             <div class="card auth-card">
                 <div class="card-body">
-                    <h4 class="card-title text-center font-weight-600">Entre No To-Do List</h4>
+                    <h4 class="card-title text-center font-weight-600">Registre-se No To-Do List</h4>
                     <form method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ next }}">
                         {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                        <button type="submit" class="btn btn-primary btn-block">Registrar</button>
                     </form>
                     <br>
-                    <a href="/accounts/register" class="btn btn-link">Ainda não é cadastrado? Clique aqui!</a>
+                    <a href="/accounts/login" class="btn btn-link">Voltar</a>
                 </div>
             </div>
         </div>
