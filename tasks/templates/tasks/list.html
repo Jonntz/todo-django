@@ -6,6 +6,23 @@
 {% block content %}
     <div class="offset-1 col-10 list-div">
         <h1>Lista de tarefas</h1>
+        <div class="container dashboard">
+            <div class = "col-4 dashboard-box" id="dashboard-lastdays">
+                <h4>Finalizado nos últimos 30 dias</h4>
+                <span>{{ tasksRecently }}</span>
+            </div>
+
+            <div class = "col-4 dashboard-box" id="dashboard-done">
+                <h4>Tarefas finalizadas</h4>
+                <span>{{ tasksDone}}</span>
+            </div>
+
+            <div class = "col-4 dashboard-box" id="dashboard-doing">
+                <h4>Tarefas para fazer</h4>
+                <span> {{tasksDoing}} </span>
+            </div>
+        </div>
+        <a href"/dashboard" class="btn btn-link"> <i class="fa fa-arrow-right" aria-hidden="true"></i><span> Vá para o dashboard</span></a><br>
         <a id="add_link" href="/newtask">
             <div class="col-2 add-div">
                 <i class="fa fa-plus" aria-hidden="true"></i>Adicionar tarefa

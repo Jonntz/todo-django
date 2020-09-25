@@ -5,11 +5,15 @@ from .models import Task
 from .forms import TaskForm
 from django.contrib import messages
 from django.core.paginator import Paginator
+import datetime
 
 @login_required
 def task_list(request):
     search = request.GET.get('search')
     searchFilter = request.GET.get('filter')
+    tasksDoneRecently = Task.objects.filter(done='done', update_at__gt=datetime.datetime.now()-datetime.timedelta(days=30), user=request.user).count()
+    tasksDone = Task.objects.filter(done='done', user=request.user).count()
+    tasksDoing = Task.objects.filter(done='Doing', user=request.user).count()
 
     if search:
         tasks = Task.objects.filter(title__icontains=search, user=request.user)
@@ -23,7 +27,7 @@ def task_list(request):
         page = request.GET.get('page')
         tasks = paginator.get_page(page)
 
-    return render(request, 'tasks/list.html', {'tasks': tasks})
+    return render(request, 'tasks/list.html', {'tasks': tasks, 'tasksRecently': tasksDoneRecently, 'tasksDone': tasksDone, 'tasksDoing': tasksDoing})
 
 @login_required
 def task_view(request, id):
@@ -85,4 +89,3 @@ def change_status(request, id):
     
     task.save()
     return redirect('/')
-
